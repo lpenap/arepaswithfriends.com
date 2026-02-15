@@ -5,24 +5,25 @@ export default {
     extend: {
       colors: {
         arepa: {
-          DEFAULT: '#E8973C',
-          light: '#F5C478',
-          dark: '#C67B2E',
-          50: '#FFF8E7',
+          DEFAULT: '#D4A860',
+          light: '#E8C88A',
+          dark: '#B8893A',
+          50: '#FBF5EA',
         },
         verde: {
           DEFAULT: '#25D366',
           dark: '#128C7E',
-          forest: '#2D5016',
+          forest: '#4A6E2D',
+          olive: '#6B8E3A',
         },
         crema: {
-          DEFAULT: '#FFF8E7',
-          dark: '#F5E6CC',
+          DEFAULT: '#FAF3E8',
+          dark: '#EDE0CC',
         },
         marron: {
-          DEFAULT: '#3D2B1F',
-          light: '#5D4037',
-          medium: '#795548',
+          DEFAULT: '#3B2417',
+          light: '#5C3A21',
+          medium: '#7A4E2D',
         },
       },
       fontFamily: {

@@ -1,10 +1,10 @@
 ---
-import { INSTAGRAM_URL, FORM_ENDPOINT } from '../config';
+import { INSTAGRAM_URL, FORM_ENDPOINT, IMAGES } from '../config';
 ---
 
 <section id="reservar" class="relative">
   <!-- Parallax divider top -->
-  <div class="parallax-bg h-48 md:h-64" style="background-image: linear-gradient(rgba(61,43,31,0.6), rgba(61,43,31,0.6)), url('/images/experiencia.svg');"></div>
+  <div class="parallax-bg h-48 md:h-64" style={`background-image: linear-gradient(rgba(59,36,23,0.6), rgba(59,36,23,0.6)), url('${IMAGES.experiencia}');`}></div>
 
   <div class="section-padding bg-marron text-white">
     <div class="max-w-4xl mx-auto text-center">

@@ -31,19 +31,19 @@ export const SITE_URL = 'https://arepaswithfriends.com';
 // ============================================
 export const IMAGES = {
   logo: '/images/logo.svg',
-  hero: '/images/hero.svg',
-  experiencia: '/images/experiencia.svg',
-  queVasAHacer: '/images/que-vas-a-hacer.svg',
-  lugar: '/images/lugar.svg',
+  hero: '/images/hero_arepas.jpg',
+  experiencia: '/images/experiencia.jpg',
+  queVasAHacer: '/images/que_vas_a_hacer.jpg',
+  lugar: '/images/el_sitio.jpg',
   gallery: [
-    '/images/gallery-1.svg',
-    '/images/gallery-2.svg',
-    '/images/gallery-3.svg',
-    '/images/gallery-4.svg',
-    '/images/gallery-5.svg',
-    '/images/gallery-6.svg',
-    '/images/gallery-7.svg',
-    '/images/gallery-8.svg',
+    '/images/gallery/1.jpg',
+    '/images/gallery/2.jpg',
+    '/images/gallery/3.jpg',
+    '/images/gallery/4.jpg',
+    '/images/gallery/5.jpg',
+    '/images/gallery/6.jpg',
+    '/images/gallery/7.jpg',
+    '/images/gallery/8.jpg',
   ],
 };
 

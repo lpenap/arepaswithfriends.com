@@ -158,7 +158,7 @@ html.lang-en .i18n-es { display: none !important; }
 .mobile-menu {
   @apply fixed inset-0 z-[90] flex flex-col items-center justify-center
          gap-6 opacity-0 pointer-events-none transition-all duration-300;
-  background-color: rgba(61, 43, 31, 0.98);
+  background-color: rgba(59, 36, 23, 0.98);
 }
 
 .mobile-menu.active {

@@ -1,0 +1,173 @@
+/* ======== Google Fonts ======== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ======== Base ======== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply font-body text-marron bg-crema;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+}
+
+/* ======== i18n visibility toggle ======== */
+html.lang-es .i18n-en { display: none !important; }
+html.lang-en .i18n-es { display: none !important; }
+
+/* ======== Parallax sections ======== */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Mobile: disable fixed attachment (poor support on iOS) */
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* ======== Header ======== */
+.header-transparent {
+  @apply bg-transparent;
+}
+
+.header-solid {
+  @apply bg-marron/95 backdrop-blur-md shadow-lg;
+}
+
+/* ======== WhatsApp float button ======== */
+.whatsapp-float {
+  @apply fixed bottom-6 right-6 z-50 flex items-center justify-center
+         w-16 h-16 rounded-full bg-verde shadow-lg
+         hover:bg-verde-dark transition-all duration-300
+         hover:scale-110;
+}
+
+.whatsapp-float svg {
+  @apply w-8 h-8 text-white;
+}
+
+/* ======== Gallery / Lightbox ======== */
+.gallery-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.gallery-item {
+  @apply relative overflow-hidden rounded-xl cursor-pointer;
+  aspect-ratio: 4/3;
+}
+
+.gallery-item img {
+  @apply w-full h-full object-cover transition-transform duration-500 group-hover:scale-110;
+}
+
+.lightbox-overlay {
+  @apply fixed inset-0 z-[100] bg-black/90 flex items-center justify-center
+         opacity-0 pointer-events-none transition-opacity duration-300;
+}
+
+.lightbox-overlay.active {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.lightbox-overlay img {
+  @apply max-w-[90vw] max-h-[85vh] object-contain rounded-lg;
+}
+
+.lightbox-btn {
+  @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center
+         bg-white/20 hover:bg-white/40 rounded-full text-white text-2xl
+         transition-colors duration-200 backdrop-blur-sm;
+}
+
+.lightbox-close {
+  @apply absolute top-4 right-4 w-12 h-12 flex items-center justify-center
+         bg-white/20 hover:bg-white/40 rounded-full text-white text-2xl
+         transition-colors duration-200 backdrop-blur-sm;
+}
+
+/* ======== Section shared styles ======== */
+.section-padding {
+  @apply py-20 md:py-28 px-4;
+}
+
+.section-title {
+  @apply text-3xl md:text-5xl font-heading font-bold text-center mb-8 md:mb-12;
+}
+
+/* ======== Animations ======== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======== CTA button ======== */
+.btn-whatsapp {
+  @apply inline-flex items-center gap-3 px-8 py-4 bg-verde text-white
+         font-bold text-lg rounded-full shadow-lg
+         hover:bg-verde-dark hover:shadow-xl
+         transition-all duration-300 hover:-translate-y-1;
+}
+
+.btn-whatsapp-sm {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 bg-verde text-white
+         font-semibold text-sm rounded-full
+         hover:bg-verde-dark transition-all duration-300;
+}
+
+/* ======== FAQ accordion ======== */
+.faq-item details summary {
+  @apply cursor-pointer list-none py-5 px-6 text-lg font-semibold
+         flex items-center justify-between;
+}
+
+.faq-item details summary::after {
+  content: '+';
+  @apply text-2xl font-bold text-arepa transition-transform duration-300;
+}
+
+.faq-item details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item details .faq-answer {
+  @apply px-6 pb-5 text-marron-light leading-relaxed;
+}
+
+/* ======== Mobile menu ======== */
+.mobile-menu {
+  @apply fixed inset-0 z-[90] flex flex-col items-center justify-center
+         gap-6 opacity-0 pointer-events-none transition-all duration-300;
+  background-color: rgba(61, 43, 31, 0.98);
+}
+
+.mobile-menu.active {
+  @apply opacity-100 pointer-events-auto;
+}
+
+/* ======== Form ======== */
+.form-input {
+  @apply w-full px-4 py-3 bg-white border-2 border-crema-dark rounded-lg
+         focus:border-arepa focus:outline-none transition-colors duration-200
+         text-marron placeholder:text-marron-light/50;
+}

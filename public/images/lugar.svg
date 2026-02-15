@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 800" width="1920" height="800">
+  <rect width="1920" height="800" fill="#4A7C28"/>
+  <circle cx="960" cy="400" r="200" fill="#FFF8E7" opacity="0.06"/>
+  <text x="960" y="390" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#FFF8E7" opacity="0.3">EL LUGAR</text>
+  <text x="960" y="430" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#FFF8E7" opacity="0.2">Section background — Replace with real photo</text>
+</svg>

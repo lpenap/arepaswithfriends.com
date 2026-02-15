@@ -1,0 +1,128 @@
+---
+import { IMAGES } from '../config';
+
+const galleryAlts = {
+  es: [
+    'Preparación de arepas',
+    'Degustación de rellenos',
+    'Grupo cocinando arepas',
+    'Masa de arepas lista',
+    'Arepas en la plancha',
+    'Rellenos variados',
+    'Amigos disfrutando la experiencia',
+    'Arepa rellena lista para comer',
+  ],
+  en: [
+    'Arepa preparation',
+    'Filling tasting',
+    'Group cooking arepas',
+    'Arepa dough ready',
+    'Arepas on the griddle',
+    'Assorted fillings',
+    'Friends enjoying the experience',
+    'Stuffed arepa ready to eat',
+  ],
+};
+---
+
+<section id="fotos" class="section-padding bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in">
+      <h2 class="section-title text-marron">
+        <span class="i18n-es">Fotos</span>
+        <span class="i18n-en">Photos</span>
+      </h2>
+
+      <div class="w-16 h-1 bg-arepa mx-auto mb-12 rounded-full"></div>
+
+      <!-- Gallery grid -->
+      <div class="gallery-grid">
+        {IMAGES.gallery.map((src, i) => (
+          <div class="gallery-item group" data-index={i}>
+            <img
+              src={src}
+              alt={galleryAlts.es[i]}
+              data-alt-es={galleryAlts.es[i]}
+              data-alt-en={galleryAlts.en[i]}
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-btn left-4" id="lb-prev" aria-label="Previous image">&#8249;</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lightbox-btn right-4" id="lb-next" aria-label="Next image">&#8250;</button>
+</div>
+
+<script is:inline>
+  (function() {
+    var lightbox = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbPrev = document.getElementById('lb-prev');
+    var lbNext = document.getElementById('lb-next');
+    var lbClose = lightbox.querySelector('.lightbox-close');
+    var items = document.querySelectorAll('.gallery-item');
+    var current = 0;
+
+    function getSrcs() {
+      return Array.from(items).map(function(item) {
+        return item.querySelector('img').src;
+      });
+    }
+
+    function getAlt(index) {
+      var img = items[index].querySelector('img');
+      var lang = document.documentElement.classList.contains('lang-en') ? 'en' : 'es';
+      return img.dataset['alt' + lang.charAt(0).toUpperCase() + lang.slice(1)] || img.alt;
+    }
+
+    function show(index) {
+      var srcs = getSrcs();
+      current = (index + srcs.length) % srcs.length;
+      lbImg.src = srcs[current];
+      lbImg.alt = getAlt(current);
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hide() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    items.forEach(function(item, i) {
+      item.addEventListener('click', function() { show(i); });
+    });
+
+    lbPrev.addEventListener('click', function(e) {
+      e.stopPropagation();
+      show(current - 1);
+    });
+
+    lbNext.addEventListener('click', function(e) {
+      e.stopPropagation();
+      show(current + 1);
+    });
+
+    lbClose.addEventListener('click', hide);
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) hide();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') hide();
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+  })();
+</script>

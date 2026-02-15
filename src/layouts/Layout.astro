@@ -1,0 +1,99 @@
+---
+import { SITE_NAME, SITE_URL, IMAGES, WHATSAPP_NUMBER } from '../config';
+import { es } from '../i18n/es';
+import { en } from '../i18n/en';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const defaultTitle = es.metaTitle;
+const defaultDescription = es.metaDescription;
+const pageTitle = title || defaultTitle;
+const pageDescription = description || defaultDescription;
+---
+
+<!doctype html>
+<html lang="es" class="lang-es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <!-- OG Tags -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:image" content={`${SITE_URL}${IMAGES.hero}`} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={IMAGES.logo} />
+
+    <!-- Preconnect fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="min-h-screen" data-wa-number={WHATSAPP_NUMBER}>
+    <slot />
+
+    <!-- i18n: detect language and apply -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('lang');
+        let lang;
+        if (stored === 'es' || stored === 'en') {
+          lang = stored;
+        } else {
+          lang = navigator.language.startsWith('es') ? 'es' : 'en';
+        }
+        const html = document.documentElement;
+        html.classList.remove('lang-es', 'lang-en');
+        html.classList.add('lang-' + lang);
+        html.setAttribute('lang', lang);
+        localStorage.setItem('lang', lang);
+      })();
+    </script>
+
+    <!-- Fade-in observer -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <!-- Dynamic meta update based on lang -->
+    <script is:inline define:vars={{ esTitle: es.metaTitle, enTitle: en.metaTitle, esDesc: es.metaDescription, enDesc: en.metaDescription }}>
+      (function() {
+        var lang = document.documentElement.classList.contains('lang-en') ? 'en' : 'es';
+        if (lang === 'en') {
+          document.title = enTitle;
+          var descMeta = document.querySelector('meta[name="description"]');
+          if (descMeta) descMeta.setAttribute('content', enDesc);
+        }
+      })();
+    </script>
+  </body>
+</html>

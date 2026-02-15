@@ -1,0 +1,35 @@
+---
+import { IMAGES } from '../config';
+---
+
+<section id="lugar" class="relative">
+  <!-- Parallax band -->
+  <div class="parallax-bg h-64 md:h-96" style={`background-image: linear-gradient(rgba(61,43,31,0.4), rgba(61,43,31,0.4)), url('${IMAGES.lugar}');`}></div>
+
+  <div class="section-padding bg-crema">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="fade-in">
+        <h2 class="section-title text-marron">
+          <span class="i18n-es">El lugar</span>
+          <span class="i18n-en">The place</span>
+        </h2>
+
+        <div class="w-16 h-1 bg-arepa mx-auto mb-8 rounded-full"></div>
+
+        <p class="text-lg md:text-xl text-marron-light leading-relaxed max-w-2xl mx-auto">
+          <span class="i18n-es">Un espacio agradable, cálido y cómodo, ideal para cocinar en grupo y pasarla bien. Pensado para que te sientas en casa.</span>
+          <span class="i18n-en">A pleasant, warm, and comfortable space, ideal for group cooking and having a great time. Designed to make you feel at home.</span>
+        </p>
+
+        <!-- Location hint -->
+        <div class="mt-10 inline-flex items-center gap-2 bg-white rounded-full px-6 py-3 shadow-sm text-marron-light">
+          <svg class="w-5 h-5 text-arepa" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="text-sm">Castelar, Buenos Aires</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
